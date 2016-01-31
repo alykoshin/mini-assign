@@ -1,6 +1,6 @@
 {
   "name": "mini-assign",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Yet another Object.assign() and completeAssign based on Mozilla article",
   "main": "./index.js",
   "scripts": {
