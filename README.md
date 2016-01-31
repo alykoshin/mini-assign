@@ -12,6 +12,23 @@
 
 Yet another Object.assign() and completeAssign based on Mozilla article
 
+https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
+
+Module exports two functions:
+
+## assign(target, ...sources)
+- target - target object, followed by list of source objects
+- returns target
+ 
+```js
+res = assign(target, source1, source2)
+```
+
+## completeAssign(target /*..sources*/)
+- target - target object, followed by list of source objects
+- returns target
+
+
 
 If you have different needs regarding the functionality, please add a [feature request](https://github.com/alykoshin/mini-assign/issues).
 
