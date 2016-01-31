@@ -10,7 +10,7 @@
 
 # mini-assign
 
-Yet another Object.assign() and completeAssign based on Mozilla article
+Yet another Object.assign() and completeAssign() based on Mozilla article
 
 https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
 
