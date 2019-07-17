@@ -2,19 +2,25 @@
 
 /* globals describe, it */
 
-var chai = require('chai');
+const chai = require('chai');
 //var should = chai.should();
-var expect = chai.expect;
+const expect = chai.expect;
 
-var assign = require('../');
-
-
-describe('#assign()', function() {
+const assign = require('../');
 
 
-  it('expect assign() to copy own properties', function() {
+describe('#assign()', () => {
 
-    var obj1 = {
+
+  it('expect assign() is function',  () => {
+      expect(assign).to.be.a('function');
+    }
+  );
+
+
+  it('expect assign() to copy own properties', () => {
+
+    const obj1 = {
       prop1: 'prop1',
       prop2: 'prop2',
       prop3: {
@@ -25,7 +31,7 @@ describe('#assign()', function() {
         prop52: 'prop52'
       }
     };
-    var obj2 = {
+    const obj2 = {
       prop2: 'prop2',
       prop4: {
         prop41: 'prop41'
@@ -35,7 +41,7 @@ describe('#assign()', function() {
         prop53: 'prop53'
       }
     };
-    var res = {};
+    let res = {};
 
     assign(res, obj1);
     expect(res).eql(obj1);
@@ -46,14 +52,15 @@ describe('#assign()', function() {
   });
 
 
-  it('should assign() not copy prototype properties', function() {
+  it('should assign() not copy prototype properties', () => {
 
-    var Obj = function() {
+    const Obj = function()  {
       this.prop1 = 'prop1';
     };
     Obj.prototype.prop2 = 'prop2';
-    var obj = new Obj();
-    var res = {};
+
+    const obj = new Obj();
+    const res = {};
 
     assign(res, obj);
     expect(res).to.contain.all.keys('prop1');
@@ -62,22 +69,22 @@ describe('#assign()', function() {
   });
 
 
-  it('expect assign() to throw if target is null or undefined', function() {
+  it('expect assign() to throw if target is null or undefined', () => {
 
-    expect(function() {
+    expect(() => {
       assign(null);
     }).throw(TypeError);
 
-    expect(function() {
+    expect(() => {
       assign(undefined);
     }).throw(TypeError);
-
   });
 
-  it('expect assign() to accept null and undefined source', function() {
 
-    var obj = {};
-    var res;
+  it('expect assign() to accept null and undefined source', () => {
+
+    const obj = {};
+    let res;
 
     res = assign(obj, null);
     expect(res).to.deep.equals(obj);
@@ -89,4 +96,25 @@ describe('#assign()', function() {
   });
 
 
+  it('should assing() not copy properties for prototype obj ', () => {
+
+    const parent = {
+      parentProtoProp: 'parentProtoProp-value',
+    };
+
+    function Child() {
+      this.childProp = 'childProp-value';
+    }
+    Child.prototype = parent;
+
+    const obj = new Child();
+    obj.ownProp = 'ownProp-value';
+
+    const res = assign({}, obj);  //, res);
+
+    expect(res).to.not.deep.equals(obj);
+  });
+
+
 });
+
